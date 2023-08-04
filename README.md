@@ -1,4 +1,4 @@
-# CINEMAX MOVIE APP
+# CRYPTOMAX APP
 Android application utilizing the Kotlin programming language. This application seamlessly integrates with the renowned  [COINCAP_API](https://docs.coincap.io/) , which allows users to explore and discover a
 wide range of cryptocurrency exchanges including an extensive listing with current market prices.
 
