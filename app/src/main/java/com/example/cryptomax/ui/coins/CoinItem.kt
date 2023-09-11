@@ -1,141 +1,143 @@
 package com.example.cryptomax.ui.coins
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material3.*
+import androidx.compose.material.icons.filled.North
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import com.example.cryptomax.common.util.Consts.CryptoIconUrl
+import com.example.cryptomax.common.util.LineChart
 import com.example.cryptomax.models.Data
+import com.example.cryptomax.ui.component.LineCharts
 import com.example.cryptomax.ui.theme.spacing
 
 @Composable
 fun CoinItem(coin: Data) {
     val spacing = MaterialTheme.spacing
-    Box(
+    Card(
         modifier = Modifier
-            .background(
-                brush = Brush.linearGradient(
-                    colors = listOf(
-                        MaterialTheme.colorScheme.surfaceVariant,
-                        MaterialTheme.colorScheme.surface
-                    ),
-                    start = Offset(0f, Float.POSITIVE_INFINITY),
-                    end = Offset(Float.POSITIVE_INFINITY, 0f)
-                )
-            )
             .fillMaxWidth()
-            .wrapContentHeight()
-            .padding(spacing.extraSmall)
-            .clip(RoundedCornerShape(spacing.small))
-            .shadow(elevation = 1.dp)
+            .padding(3.dp),
+        shape = RoundedCornerShape(8.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface
+        )
+
     ) {
         Row(
             modifier = Modifier
-                .padding(horizontal = 10.dp)
-                .fillMaxWidth()
+                .padding(5.dp)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            coin.rank?.let {
-                Text(
-                    text = it,
-                    style = MaterialTheme.typography.titleSmall,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier.padding(end = 8.dp),
-                    fontSize = 12.sp,
-                )
-            }
 
-            Icon(
-                Icons.Default.North,
-
-
+            AsyncImage(
+                model = CryptoIconUrl + (coin.symbol?.lowercase() ?: null),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(32.dp)
+                    .padding(vertical = 5.dp, horizontal = 5.dp)
             )
 
             coin.name?.let {
                 Text(
                     text = it,
-                    style = MaterialTheme.typography.titleSmall,
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface,
                     modifier = Modifier.padding(end = 8.dp),
-                    fontSize = 12.sp,
+                    fontSize = 14.sp,
                 )
             }
 
             coin.priceUsd?.let { priceUsd ->
-                val formattedValue  = convertDoubleValues(priceUsd)
+                val formattedValue = convertDoubleValues(priceUsd)
                 Text(
-                    text = "$" + formattedValue,
+                    text = "$ " + formattedValue,
                     style = MaterialTheme.typography.titleSmall,
                     color = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier.padding(end = 8.dp),
-                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(start = 200.dp),
+                    fontSize = 14.sp,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
+                )
+            }
+
+        }
+
+        Row(
+            modifier = Modifier
+                .padding(horizontal = 40.dp)
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.Start
+        ) {
+
+            Icon(
+                imageVector = Icons.Default.North,
+                contentDescription = null,
+                tint = Color.Green
+
+            )
+
+            coin.changePercent24Hr?.let { changePercent24Hr ->
+                val formattedValue = convertDoubleValues(changePercent24Hr)
+                Text(
+                    text = formattedValue + "%",
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = Color.Green,
+                    modifier = Modifier.padding(end = 8.dp),
+                    fontSize = 14.sp,
                 )
             }
             coin.marketCapUsd?.let { marketUsd ->
                 val formattedValue = convertDoubleValues(marketUsd)
                 Text(
-                    text =  "$" + formattedValue,
-                    style = MaterialTheme.typography.titleSmall,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier.padding(end = 8.dp),
-                    fontSize = 12.sp,
-                )
-            }
-
-            coin.changePercent24Hr?.let { marketUsd ->
-                val formattedValue = convertDoubleValues(marketUsd)
-                Text(
-                    text =  formattedValue + "%",
-                    style = MaterialTheme.typography.titleSmall,
+                    text = "( $ " + formattedValue + ")",
+                    style = MaterialTheme.typography.bodyLarge,
+                    fontWeight = FontWeight.Bold,
                     color = Color.Green,
                     modifier = Modifier.padding(end = 8.dp),
-                    fontSize = 12.sp,
+                    fontSize = 14.sp,
                 )
             }
-        }
 
-        Column(
-            modifier = Modifier
-                .padding(vertical = 13.dp, horizontal = 27.dp)
-                .fillMaxWidth()
-        ) {
-            coin.symbol?.let {
+            coin.symbol?.let { symbol ->
+
                 Text(
-                    text = it,
-                    style = MaterialTheme.typography.titleSmall,
+                    text = symbol,
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier.padding(end = 8.dp),
-                    fontSize = 12.sp,
-
-                    )
+                    fontSize = 14.sp,
+                    modifier = Modifier.padding(horizontal = 25.dp)
+                )
             }
+
         }
     }
 
-    }
+}
 
-
-private fun convertDoubleValues(priceUsd: String):String{
+private fun convertDoubleValues(priceUsd: String): String {
     val stringValue = priceUsd
     val doubleValue = stringValue.toDoubleOrNull()
     val formattedValue = doubleValue?.let { String.format("%.2f", it) } ?: stringValue
