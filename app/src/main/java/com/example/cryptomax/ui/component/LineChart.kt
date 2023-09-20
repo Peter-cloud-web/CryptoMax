@@ -2,8 +2,10 @@ package com.example.cryptomax.ui.component
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,13 +33,14 @@ fun LineCharts(modifier:Modifier = Modifier){
 
     Box(
         modifier = modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .padding(top = 20.dp),
         contentAlignment = Alignment.Center
     ) {
         LineChart(
             modifier = Modifier
-                .fillMaxWidth()
-                .size(150.dp)
+                .height(200.dp)
+                .width(400.dp)
                 .padding(16.dp),
             data = data
         )

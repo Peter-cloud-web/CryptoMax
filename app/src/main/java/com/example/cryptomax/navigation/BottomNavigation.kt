@@ -22,15 +22,15 @@ fun BottomNavigation() {
     }
 }
 
-fun RowScope.AddItem(
-    screen: BottomNavDestinations
-) {
-    NavigationBarItem(
-        selected = true, onClick = {
-            when (screen) {
-
-            }
-        })
-
-
-}
+//fun RowScope.AddItem(
+//    screen: BottomNavDestinations
+//) {
+//    NavigationBarItem(
+//        selected = true, onClick = {
+//            when (screen) {
+//
+//            }
+//        })
+//
+//
+//}
