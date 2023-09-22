@@ -1,5 +1,6 @@
 package com.example.cryptomax.ui.coins
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,23 +20,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.example.cryptomax.common.util.Consts.CryptoIconUrl
-import com.example.cryptomax.common.util.LineChart
-import com.example.cryptomax.models.Data
-import com.example.cryptomax.ui.component.LineCharts
-import com.example.cryptomax.ui.theme.spacing
+import com.example.cryptomax.models.coinListModel.Data
 
 @Composable
-fun CoinItem(coin: Data) {
-    val spacing = MaterialTheme.spacing
+fun CoinItem(coin: Data, navigationRoute: String, onItemClick: (String) -> Unit) {
+
+    val navController = rememberNavController()
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(3.dp),
+            .padding(3.dp)
+            .clickable { onItemClick(navigationRoute) },
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
@@ -159,8 +159,8 @@ val sampleCoin = Data(
     "30050.3406268508428545"
 )
 
-@Preview(showBackground = true)
-@Composable
-fun CoinItemPreview() {
-    CoinItem(coin = sampleCoin)
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun CoinItemPreview() {
+//    CoinItem(coin = sampleCoin,"")
+//}

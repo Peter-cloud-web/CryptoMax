@@ -1,5 +1,6 @@
 package com.example.viewModel
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import coil.network.HttpException
@@ -15,11 +16,12 @@ import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
-class CoinViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
+class CoinViewModel @Inject constructor(private val repository: Repository,private val stateHandle: SavedStateHandle) : ViewModel() {
     private val _allCoins = MutableStateFlow(CoinAssetsUiStates())
     val allAssets = _allCoins.asStateFlow()
 
     init {
+
         getCoins()
     }
     fun getCoins(){

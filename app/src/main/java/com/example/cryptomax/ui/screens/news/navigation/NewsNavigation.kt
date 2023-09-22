@@ -15,8 +15,8 @@ fun NavController.navigateToNews(navOptions: NavOptions? = null) {
     this.navigate(newsNavigationRoute, navOptions)
 }
 
-fun NavGraphBuilder.newsScreen(navController: NavController) {
-    composable(route = newsNavigationRoute) {
-        NewsScreen(navController = navController)
-    }
-}
+//fun NavGraphBuilder.newsScreen(navController: NavController) {
+//    composable(route = newsNavigationRoute) {
+//        NewsScreen(navController = navController)
+//    }
+//}

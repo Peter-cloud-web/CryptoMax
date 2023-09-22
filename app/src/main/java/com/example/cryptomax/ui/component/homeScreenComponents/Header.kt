@@ -1,4 +1,4 @@
-package com.example.cryptomax.ui.component
+package com.example.cryptomax.ui.component.homeScreenComponents
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -14,7 +14,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AreaChart
 import androidx.compose.material.icons.filled.ArrowForwardIos
-import androidx.compose.material.icons.filled.CopyAll
 import androidx.compose.material.icons.filled.South
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults

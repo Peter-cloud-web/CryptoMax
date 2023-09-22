@@ -13,8 +13,8 @@ fun NavController.navigateToExploration(navOptions: NavOptions? = null) {
     this.navigate(exploreNavigationRoute, navOptions)
 }
 
-fun NavGraphBuilder.exploreScreen(navController: NavController) {
-    composable(route = exploreNavigationRoute) {
-        ExploreScreen(navController = navController)
-    }
-}
+//fun NavGraphBuilder.exploreScreen(navController: NavController) {
+//    composable(route = exploreNavigationRoute) {
+//        ExploreScreen(navController = navController)
+//    }
+//}

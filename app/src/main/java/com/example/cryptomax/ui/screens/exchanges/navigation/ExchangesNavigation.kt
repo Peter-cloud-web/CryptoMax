@@ -13,8 +13,8 @@ fun NavController.navigateToExchanges(navOptions: NavOptions? = null){
     this.navigate(exchangeNavigationRoute,navOptions)
 }
 
-fun NavGraphBuilder.exchangesScreen(navController: NavController){
-    composable(route = exchangeNavigationRoute){
-      ExchangeScreen(navController = navController)  
-    }
-}
+//fun NavGraphBuilder.exchangesScreen(navController: NavController){
+//    composable(route = exchangeNavigationRoute){
+//      ExchangeScreen(navController = navController)
+//    }
+//}

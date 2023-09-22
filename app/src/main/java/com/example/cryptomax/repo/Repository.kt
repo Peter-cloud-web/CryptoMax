@@ -1,9 +1,12 @@
 package com.example.cryptomax.repo
 
-import com.example.cryptomax.models.CoinResponse
+import com.example.cryptomax.models.candlesModel.Candle
+import com.example.cryptomax.models.coinModel.Coin
+import com.example.cryptomax.models.coinListModel.CoinResponse
 import com.example.cryptomax.resource.Resource
-import kotlinx.coroutines.flow.Flow
 
 interface Repository {
    suspend fun getCoinAssets(): Resource<CoinResponse>
+   suspend fun getCoinById(id:String): Resource<Coin>
+   suspend fun getCoinIntervalHistory(id:String):Resource<Candle>
 }

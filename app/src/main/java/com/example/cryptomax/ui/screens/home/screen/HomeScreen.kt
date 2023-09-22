@@ -13,21 +13,18 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.cryptomax.models.Data
+import com.example.cryptomax.models.coinListModel.Data
 import com.example.cryptomax.ui.coins.CoinItem
-import com.example.cryptomax.ui.component.Header
-import com.example.cryptomax.ui.component.ProgressBar
+import com.example.cryptomax.ui.component.homeScreenComponents.Header
+import com.example.cryptomax.ui.component.homeScreenComponents.ProgressBar
 import com.example.viewModel.CoinViewModel
 
 @Composable
-internal fun HomeScreen(
-    modifier: Modifier = Modifier,
-    navController: NavController
-) {
+fun HomeScreen(navController: NavController, onItemClick: (coinId: String?) -> Unit) {
 
-    val coinViewModel: CoinViewModel = viewModel()
+    val coinViewModel: CoinViewModel = hiltViewModel()
     val allAssetsState = coinViewModel.allAssets.collectAsState()
     allAssetsState.value.let { states ->
         when {
@@ -36,7 +33,14 @@ internal fun HomeScreen(
             }
 
             states.success != null -> {
-                CoinList(coins = states.success.coins)
+                CoinList(
+                    coins = states.success.coins,
+                    navigationRoute = "detailsScreen",
+                    onItemClick = { coinId ->
+                        if (coinId != null) {
+                            navController.navigate("detailsScreen/$coinId")
+                        }
+                    })
             }
 
             states.error != null -> "An unexpected error occurred"
@@ -48,7 +52,11 @@ internal fun HomeScreen(
 }
 
 @Composable
-internal fun CoinList(coins: List<Data>, modifier: Modifier = Modifier) {
+fun CoinList(
+    coins: List<Data>,
+    navigationRoute: String?,
+    onItemClick: (coinId: String?) -> Unit
+) {
 
     Column(
         modifier = Modifier
@@ -62,17 +70,24 @@ internal fun CoinList(coins: List<Data>, modifier: Modifier = Modifier) {
             style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(8.dp)
-
         )
+
         LazyColumn(
-            modifier = modifier,
             contentPadding = PaddingValues(16.dp)
         ) {
             items(coins) { item ->
-                CoinItem(coin = item)
+                if (navigationRoute != null) {
+                    CoinItem(coin = item, navigationRoute,
+                        onItemClick = {
+                            onItemClick(item.id)
+                        }
+                    )
+                }
             }
         }
     }
 }
+
+
 
 

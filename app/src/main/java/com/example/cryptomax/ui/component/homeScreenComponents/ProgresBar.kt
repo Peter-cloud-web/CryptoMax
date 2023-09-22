@@ -1,4 +1,4 @@
-package com.example.cryptomax.ui.component
+package com.example.cryptomax.ui.component.homeScreenComponents
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
