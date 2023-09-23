@@ -1,5 +1,8 @@
 package com.example.cryptomax.ui.component.coinDetailComponent
 
+import android.os.Build
+import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -12,28 +15,32 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.cryptomax.common.util.LineChart
+import com.example.cryptomax.models.candlesModel.Data
 import com.example.viewModel.uistates.CoinDetailViewModel
+import org.json.JSONObject
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import kotlin.math.pow
+import kotlin.math.roundToInt
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun LineCharts(modifier:Modifier = Modifier){
 
     val viewModel: CoinDetailViewModel = hiltViewModel()
     val items = viewModel.listState
 
-    val data = listOf(
-        Pair(6, 120.45),
-        Pair(7, 111.0),
-        Pair(8, 113.45),
-        Pair(9, 112.25),
-        Pair(10, 116.45),
-        Pair(11, 113.35),
-        Pair(12, 118.65),
-        Pair(13, 110.15),
-        Pair(14, 113.05),
-        Pair(15, 114.25),
-        Pair(16, 116.35),
-        Pair(17, 117.45)
-    )
+    Log.d("Chart array", "${items}")
+
+    val data = items.value?.map {
+        val priceUsdDouble = it.priceUsd.toDouble()
+        val priceUsdShort = priceUsdDouble.roundToInt()
+        Pair(priceUsdShort,it.time.toDouble())
+    }
+
+
+    Log.d("Chart array", "$data")
 
     Box(
         modifier = modifier
@@ -41,18 +48,26 @@ fun LineCharts(modifier:Modifier = Modifier){
             .padding(top = 20.dp),
         contentAlignment = Alignment.Center
     ) {
-        LineChart(
-            modifier = Modifier
-                .height(200.dp)
-                .width(400.dp)
-                .padding(16.dp),
-            data = data
-        )
+        if (data != null) {
+            LineChart(
+                modifier = Modifier
+                    .height(200.dp)
+                    .width(400.dp)
+                    .padding(16.dp),
+                data = data
+            )
+        }
     }
+}
+
+fun Double.round(decimals: Int): Double {
+    val multiplier = 10.0.pow(decimals.toDouble())
+    return kotlin.math.round(this * multiplier) / multiplier
 }
 
 @Composable
 @Preview
+@RequiresApi(Build.VERSION_CODES.O)
 private fun PreviewCandleChart() {
     LineCharts(
         modifier = Modifier

@@ -69,7 +69,7 @@ class RepositoryImpl @Inject constructor(private val httpClient:HttpClient):Repo
                 url {
                     protocol = URLProtocol.HTTPS
                     host = COINCAP_API
-                    encodedPath = ASSETS + "/$id"
+                    encodedPath = ASSETS + "/$id" + "/history?interval=d1"
                 }
             }
             Resource.Success(candle)

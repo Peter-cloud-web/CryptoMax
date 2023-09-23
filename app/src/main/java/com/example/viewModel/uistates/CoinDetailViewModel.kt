@@ -4,6 +4,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.cryptomax.models.candlesModel.Candle
 import com.example.cryptomax.models.candlesModel.Data
 import com.example.cryptomax.models.coinModel.Coin
 import com.example.cryptomax.repo.Repository
@@ -19,7 +20,7 @@ class CoinDetailViewModel @Inject constructor(
 
     val state = mutableStateOf<Coin?>(null)
 
-    val listState = mutableListOf<Data>()
+    val listState = mutableStateOf<List<Data>?>(null)
 
     val id = stateHandle.get<String>("coinId") ?: null
 
@@ -41,7 +42,7 @@ class CoinDetailViewModel @Inject constructor(
     fun getCandleData(id : String){
         viewModelScope.launch {
             val data = repository.getCoinIntervalHistory(id)
-            listState.addAll(data.data.data)
+            listState.value = data.data?.data
         }
     }
 

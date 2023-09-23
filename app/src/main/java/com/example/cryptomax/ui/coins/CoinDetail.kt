@@ -34,8 +34,6 @@ fun CoinDetail() {
     val viewModel: CoinDetailViewModel = hiltViewModel()
     val item = viewModel.state.value?.data
 
-    val list = viewModel.getCandleData(id)
-
     Card(
         modifier = Modifier
             .fillMaxSize()
