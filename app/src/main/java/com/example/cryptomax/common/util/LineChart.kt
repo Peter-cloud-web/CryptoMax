@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -31,18 +32,18 @@ import kotlin.math.roundToInt
 @Composable
 fun LineChart(
     modifier:Modifier = Modifier,
-    data:List<Pair<Int, Double>> = emptyList()
+    data:List<Pair<Int, Double>> = emptyList(),
     ){
     val spacing = 100f
-    val graphColor = MaterialTheme.colorScheme.primary
-    val transparentGraphColor = remember { graphColor.copy(alpha = 0.5f) }
+    val graphColor = Color.Green
+    val transparentGraphColor = remember { graphColor.copy(alpha = 0.2f) }
     val upperValue = remember { (data.maxOfOrNull { it.second }?.plus(1))?.roundToInt() ?: 0 }
     val lowerValue = remember { (data.minOfOrNull { it.second }?.toInt() ?: 0) }
     val density = LocalDensity.current
 
     val textPaint = remember(density) {
         Paint().apply {
-            color = Color.Gray.toArgb()
+            color = Color.White.toArgb()
             textAlign = Paint.Align.CENTER
             textSize = density.run { 12.sp.toPx() }
         }
