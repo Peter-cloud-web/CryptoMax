@@ -1,5 +1,6 @@
 package com.example.viewModel
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -23,6 +24,7 @@ class CoinViewModel @Inject constructor(private val repository: Repository,priva
     init {
 
         getCoins()
+        getCoinNews()
     }
     fun getCoins(){
         try{
@@ -48,5 +50,12 @@ class CoinViewModel @Inject constructor(private val repository: Repository,priva
         }
 
 
+    }
+
+    fun getCoinNews(){
+        viewModelScope.launch {
+            val news = repository.getCoinNews("Bitcoin")
+            Log.d("NEWS", "${news.data?.articles}")
+        }
     }
 }

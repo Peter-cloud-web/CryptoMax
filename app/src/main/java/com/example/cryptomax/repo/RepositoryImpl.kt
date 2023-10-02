@@ -93,7 +93,7 @@ class RepositoryImpl @Inject constructor(private val httpClient:HttpClient):Repo
                     protocol = URLProtocol.HTTPS
                     host = NEWS_API
                     encodedPath = "/v2/everything?" + "$query"
-                    parameters.append("api_key", BuildConfig.NEWS_API_KEY)
+                    parameters.append("apikey", BuildConfig.NEWS_API_KEY)
                 }
             }
             Resource.Success(coinNews)
