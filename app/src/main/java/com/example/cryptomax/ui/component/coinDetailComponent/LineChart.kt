@@ -38,8 +38,6 @@ fun LineCharts(modifier:Modifier = Modifier){
     Log.d("Chart array", "${items}")
 
     val data = items.value?.map {
-//        val priceUsdDouble = it.priceUsd.toDouble()
-//        val priceUsdShort = priceUsdDouble.roundToInt()
         Pair(it.time.toInt(),it.priceUsd.toDouble())
     }
 
@@ -56,16 +54,11 @@ fun LineCharts(modifier:Modifier = Modifier){
                 modifier = Modifier
                     .height(200.dp)
                     .width(400.dp)
-                    .padding(16.dp),
+                    .padding(5.dp),
                 data = data
             )
         }
     }
-}
-
-fun Double.round(decimals: Int): Double {
-    val multiplier = 10.0.pow(decimals.toDouble())
-    return kotlin.math.round(this * multiplier) / multiplier
 }
 
 @Composable

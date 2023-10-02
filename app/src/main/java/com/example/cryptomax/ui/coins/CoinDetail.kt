@@ -59,7 +59,7 @@ fun CoinDetail() {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(10.dp),
+                    .padding(bottom = 10.dp,top = 2.dp),
                 horizontalAlignment = Alignment.Start
             ) {
                 Text(
@@ -77,7 +77,7 @@ fun CoinDetail() {
 
             CoinVolume24hRow(item)
 
-            CoinAvailableSupply(item)
+            CoinAvailableSupply()
 
             CoinBuySellButtons()
 

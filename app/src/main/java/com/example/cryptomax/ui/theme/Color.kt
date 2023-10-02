@@ -11,7 +11,7 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 val md_theme_light_primary = Color(0xFF006492)
-val md_theme_light_onPrimary = Color(0xFFFFFFFF)
+val md_theme_light_onPrimary = Color(0xFF1D38E7)
 val md_theme_light_primaryContainer = Color(0xFFC9E6FF)
 val md_theme_light_onPrimaryContainer = Color(0xFF001E2F)
 val md_theme_light_secondary = Color(0xFF50606E)
@@ -69,6 +69,8 @@ val md_theme_dark_inversePrimary = Color(0xFF006492)
 val md_theme_dark_shadow = Color(0xFF000000)
 val md_theme_dark_surfaceTint = Color(0xFF8BCEFF)
 val md_theme_dark_success = Color(0XFF1B5E20)
+
+val cardColor = Color(0xFFFCFBFB)
 
 
 val seed = Color(0xFF3B80AC)

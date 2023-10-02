@@ -21,17 +21,6 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun CoinBuySellButtons() {
-
-    Card(
-        modifier = Modifier
-            .padding(8.dp)
-            .fillMaxWidth()
-            .height(80.dp)
-            .padding(vertical = 8.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = Color.Gray
-        ),
-    ) {
         Row(
             modifier = Modifier
                 .fillMaxSize()
@@ -53,11 +42,10 @@ fun CoinBuySellButtons() {
                 onClick = { },
                 border = BorderStroke(1.dp, Color.White),
                 shape = RoundedCornerShape(30),
-                colors = ButtonDefaults.buttonColors(),
+                colors = ButtonDefaults.buttonColors(contentColor = Color.Black),
                 modifier = Modifier.padding(8.dp)
             ) {
                 Text(text = "Buy")
             }
         }
-    }
 }

@@ -44,7 +44,7 @@ fun CoinSymbolSection(item: DataX?) {
                 model = Consts.CryptoIconUrl + (item?.symbol?.lowercase() ?: null),
                 contentDescription = "BTC",
                 modifier = Modifier
-                    .size(40.dp)
+                    .size(70.dp)
                     .padding(vertical = 2.dp, horizontal = 2.dp)
             )
             item?.symbol?.let {
