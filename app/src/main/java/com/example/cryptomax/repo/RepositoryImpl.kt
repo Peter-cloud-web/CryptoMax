@@ -3,11 +3,14 @@ package com.example.cryptomax.repo
 import android.net.http.HttpException
 import android.os.Build
 import androidx.annotation.RequiresExtension
+import com.example.cryptomax.BuildConfig
 import com.example.cryptomax.common.util.Consts.ASSETS
 import com.example.cryptomax.common.util.Consts.COINCAP_API
+import com.example.cryptomax.common.util.Consts.NEWS_API
 import com.example.cryptomax.models.candlesModel.Candle
 import com.example.cryptomax.models.coinModel.Coin
 import com.example.cryptomax.models.coinListModel.CoinResponse
+import com.example.cryptomax.models.coinNews.CoinNewsResponse
 import com.example.cryptomax.resource.Resource
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
@@ -79,6 +82,29 @@ class RepositoryImpl @Inject constructor(private val httpClient:HttpClient):Repo
             Resource.Error(e.localizedMessage?:"Network server error")
         }catch (e: HttpException){
             Resource.Error(e.localizedMessage?:"Network error")
+        }
+    }
+
+    override suspend fun getCoinNews(query: String): Resource<CoinNewsResponse> {
+        return try{
+            Resource.Loading(null)
+            val coinNews = httpClient.get<CoinNewsResponse>{
+                url{
+                    protocol = URLProtocol.HTTPS
+                    host = NEWS_API
+                    encodedPath = "/v2/everything?" + "$query"
+                    parameters.append("api_key", BuildConfig.NEWS_API_KEY)
+                }
+            }
+            Resource.Success(coinNews)
+        } catch (e: Exception) {
+            Resource.Error(
+                e.localizedMessage ?: " An unexpected error. Try again later."
+            )
+        } catch (e: IOException) {
+            Resource.Error(
+                e.localizedMessage ?: "Network/Server error. Check internet connection"
+            )
         }
     }
 }
