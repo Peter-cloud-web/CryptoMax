@@ -1,5 +1,8 @@
 package com.example.cryptomax.models.coinNews
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Article(
     val author: String,
     val content: String,
