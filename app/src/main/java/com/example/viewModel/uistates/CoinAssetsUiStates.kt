@@ -2,6 +2,7 @@ package com.example.viewModel.uistates
 
 import com.example.cryptomax.models.coinListModel.CoinResponse
 import com.example.cryptomax.models.coinListModel.Data
+import com.example.cryptomax.models.coinNews.CoinNewsResponse
 
 data class CoinAssetsUiStates(
     val isLoading: Boolean = false,
@@ -9,8 +10,8 @@ data class CoinAssetsUiStates(
     val error: String = ""
 )
 
-data class CoinAssetUiState(
+data class NewsAssetUiState(
     val isLoading: Boolean = false,
-    val success: Data? = null,
+    val success: CoinNewsResponse? = null,
     val error: String = ""
 )

@@ -24,7 +24,6 @@ class CoinViewModel @Inject constructor(private val repository: Repository,priva
     init {
 
         getCoins()
-        getCoinNews()
     }
     fun getCoins(){
         try{
@@ -49,13 +48,6 @@ class CoinViewModel @Inject constructor(private val repository: Repository,priva
                 CoinAssetsUiStates(error = e.localizedMessage ?: "An unexpected error occurred")
         }
 
-
     }
 
-    fun getCoinNews(){
-        viewModelScope.launch {
-            val news = repository.getCoinNews("Bitcoin")
-            Log.d("NEWS", "${news.data?.articles}")
-        }
-    }
 }

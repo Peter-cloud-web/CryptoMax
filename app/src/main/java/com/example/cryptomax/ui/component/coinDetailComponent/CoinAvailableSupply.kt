@@ -34,6 +34,7 @@ fun CoinAvailableSupply() {
             containerColor = cardColor
         ),
     ) {
+
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
