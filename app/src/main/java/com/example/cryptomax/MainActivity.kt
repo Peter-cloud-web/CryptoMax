@@ -1,20 +1,29 @@
 package com.example.cryptomax
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
+import androidx.annotation.RequiresExtension
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.cryptomax.navigation.BottomNavDestinations
 import com.example.cryptomax.ui.screens.detail.screen.CoinDetailScreen
+import com.example.cryptomax.ui.screens.exchanges.screen.ExchangeScreen
+import com.example.cryptomax.ui.screens.explore.screen.ExploreScreen
 import com.example.cryptomax.ui.screens.home.screen.HomeScreen
+import com.example.cryptomax.ui.screens.news.screen.NewsScreen
 import com.example.cryptomax.ui.theme.CryptoMaxTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -24,6 +33,8 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
+    @RequiresApi(Build.VERSION_CODES.O)
     @Composable
     private fun CryptoApp() {
         val navController = rememberNavController()
@@ -37,6 +48,15 @@ class MainActivity : ComponentActivity() {
                 val coinId = backStackEntry.arguments?.getString("coinId")
                 requireNotNull(coinId) { "CoinId wasn't found. Please make sure its set!" }
                 CoinDetailScreen()
+            }
+            composable(route = BottomNavDestinations.Explore.route) { backStackEntry ->
+                ExploreScreen(navController = navController)
+            }
+            composable(route = BottomNavDestinations.ExchangeScreen.route) { backStackEntry ->
+                ExchangeScreen(navController = navController)
+            }
+            composable(route = BottomNavDestinations.News.route) { backStackEntry ->
+                NewsScreen(navController = navController)
             }
 
         }
