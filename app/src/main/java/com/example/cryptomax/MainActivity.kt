@@ -7,10 +7,13 @@ import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresExtension
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.cryptomax.navigation.BottomNavDestinations
+import com.example.cryptomax.navigation.MainScreenView
 import com.example.cryptomax.ui.screens.detail.screen.CoinDetailScreen
 import com.example.cryptomax.ui.screens.exchanges.screen.ExchangeScreen
 import com.example.cryptomax.ui.screens.explore.screen.ExploreScreen
@@ -29,6 +32,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             CryptoMaxTheme {
                 CryptoApp()
+                MainScreenView()
             }
         }
     }
@@ -49,16 +53,6 @@ class MainActivity : ComponentActivity() {
                 requireNotNull(coinId) { "CoinId wasn't found. Please make sure its set!" }
                 CoinDetailScreen()
             }
-            composable(route = BottomNavDestinations.Explore.route) { backStackEntry ->
-                ExploreScreen(navController = navController)
-            }
-            composable(route = BottomNavDestinations.ExchangeScreen.route) { backStackEntry ->
-                ExchangeScreen(navController = navController)
-            }
-            composable(route = BottomNavDestinations.News.route) { backStackEntry ->
-                NewsScreen(navController = navController)
-            }
-
         }
     }
 }
