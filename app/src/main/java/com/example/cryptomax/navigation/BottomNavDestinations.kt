@@ -1,44 +1,43 @@
 package com.example.cryptomax.navigation
 
-import androidx.compose.ui.graphics.vector.ImageVector
+import com.example.cryptomax.R
 import com.example.cryptomax.designSystem.icon.CryptoMaxIcons
 
-sealed  class BottomNavDestinations(
+sealed class BottomNavDestinations(
     val route: String,
     val title: String? = null,
-    val iconSelected: ImageVector? = null,
-    val iconUnSelected: ImageVector? = null,
+    val icon: Int
 
-){
-    object HomeScreen:  BottomNavDestinations(
+) {
+    object HomeScreen : BottomNavDestinations(
         route = "home_screen",
         title = "Home",
-        iconSelected = CryptoMaxIcons.homeUnselected,
-        iconUnSelected = CryptoMaxIcons.home
+        icon = R.drawable.baseline_home_24
+
     )
 
-    object ExchangeScreen:  BottomNavDestinations(
+    object ExchangeScreen : BottomNavDestinations(
         route = "exchange_screen",
         title = "Exchange",
-        iconSelected = CryptoMaxIcons.exchangeUnselected,
-        iconUnSelected = CryptoMaxIcons.exchange
+        icon = R.drawable.baseline_currency_exchange_24
     )
 
-    object Explore:  BottomNavDestinations(
+    object Explore : BottomNavDestinations(
         route = "explore_screen",
         title = "Explore",
-        iconSelected = CryptoMaxIcons.exploreUnselected,
-        iconUnSelected = CryptoMaxIcons.explore
+        icon = R.drawable.baseline_explore_24
+
+
     )
 
-    object News:  BottomNavDestinations(
+    object News : BottomNavDestinations(
         route = "news_screen",
         title = "News",
-        iconSelected = CryptoMaxIcons.newsUnselected,
-        iconUnSelected = CryptoMaxIcons.news
+        icon = R.drawable.baseline_newspaper_24
+
     )
 
-
-
-
+    companion object {
+        val toList = listOf(HomeScreen, ExchangeScreen, Explore, News)
+    }
 }

@@ -31,28 +31,27 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             CryptoMaxTheme {
-                CryptoApp()
                 MainScreenView()
             }
         }
     }
 
-    @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
-    @RequiresApi(Build.VERSION_CODES.O)
-    @Composable
-    private fun CryptoApp() {
-        val navController = rememberNavController()
-        NavHost(navController, startDestination = "homescreen") {
-            composable(route = "homescreen") {
-                HomeScreen(navController, onItemClick = { coinId ->
-                    navController.navigate("detailsScreen/$coinId")
-                })
-            }
-            composable(route = "detailsScreen/{coinId}") { backStackEntry ->
-                val coinId = backStackEntry.arguments?.getString("coinId")
-                requireNotNull(coinId) { "CoinId wasn't found. Please make sure its set!" }
-                CoinDetailScreen()
-            }
-        }
-    }
+//    @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
+//    @RequiresApi(Build.VERSION_CODES.O)
+//    @Composable
+//    private fun CryptoApp() {
+//        val navController = rememberNavController()
+//        NavHost(navController, startDestination = "homescreen") {
+//            composable(route = "homescreen") {
+//                HomeScreen(navController, onItemClick = { coinId ->
+//                    navController.navigate("detailsScreen/$coinId")
+//                })
+//            }
+//            composable(route = "detailsScreen/{coinId}") { backStackEntry ->
+//                val coinId = backStackEntry.arguments?.getString("coinId")
+//                requireNotNull(coinId) { "CoinId wasn't found. Please make sure its set!" }
+//                CoinDetailScreen()
+//            }
+//        }
+//    }
 }

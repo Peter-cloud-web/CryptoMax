@@ -65,9 +65,10 @@ fun CoinDetail() {
         ) {
 
             Text(
+                modifier = Modifier.padding(12.dp),
                 text = "COIN",
-                style = MaterialTheme.typography.bodyLarge,
-                fontWeight = FontWeight.Bold
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.Bold,
             )
 
             CoinSymbolSection(item)
@@ -75,18 +76,15 @@ fun CoinDetail() {
             CoinSupplySection(item)
 
             Text(
+                modifier = Modifier.padding(12.dp),
                 text = "COIN CHART",
-                style = MaterialTheme.typography.bodyLarge,
+                style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold
             )
 
 
 
             LineCharts()
-
-
-
-
 
             NewsList()
 
@@ -97,8 +95,9 @@ fun CoinDetail() {
                 horizontalAlignment = Alignment.Start
             ) {
                 Text(
+                    modifier = Modifier.padding(12.dp),
                     text = "Statistics",
-                    style = MaterialTheme.typography.bodyLarge,
+                    style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold
                 )
             }
@@ -149,8 +148,9 @@ fun NewsList(){
 @Composable
 fun NewsList(news:List<Article>){
     Text(
-        text = "NEWS",
-        style = MaterialTheme.typography.bodyLarge,
+        modifier = Modifier.padding(12.dp),
+        text = "COIN NEWS",
+        style = MaterialTheme.typography.titleLarge,
         fontWeight = FontWeight.Bold
     )
     LazyRow(contentPadding = PaddingValues(16.dp)){
