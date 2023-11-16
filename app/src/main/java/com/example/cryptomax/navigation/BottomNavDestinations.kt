@@ -5,7 +5,7 @@ import com.example.cryptomax.designSystem.icon.CryptoMaxIcons
 
 sealed class BottomNavDestinations(
     val route: String,
-    val title: String? = null,
+    val title: String,
     val icon: Int
 
 ) {
@@ -26,8 +26,6 @@ sealed class BottomNavDestinations(
         route = "explore_screen",
         title = "Explore",
         icon = R.drawable.baseline_explore_24
-
-
     )
 
     object News : BottomNavDestinations(
@@ -37,7 +35,4 @@ sealed class BottomNavDestinations(
 
     )
 
-    companion object {
-        val toList = listOf(HomeScreen, ExchangeScreen, Explore, News)
-    }
 }

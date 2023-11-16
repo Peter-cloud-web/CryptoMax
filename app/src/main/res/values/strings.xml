@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CryptoMax</string>
+    <string name="Coin">Coin</string>
 </resources>

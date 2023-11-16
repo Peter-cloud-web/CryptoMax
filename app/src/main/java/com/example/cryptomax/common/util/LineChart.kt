@@ -51,30 +51,30 @@ fun LineChart(
 
     Canvas(modifier = modifier) {
         val spacePerHour = (size.width - spacing) / data.size
-        (data.indices step 2).forEach { i ->
-            val hour = data[i].first
-            drawContext.canvas.nativeCanvas.apply {
-                drawText(
-                    hour.toString(),
-                    spacing + i * spacePerHour,
-                    size.height,
-                    textPaint
-                )
-            }
-        }
+//        (data.indices step 2).forEach { i ->
+//            val hour = data[i].first
+//            drawContext.canvas.nativeCanvas.apply {
+//                drawText(
+//                    hour.toString(),
+//                    spacing + i * spacePerHour,
+//                    size.height,
+//                    textPaint
+//                )
+//            }
+//        }
 
-        val priceStep = (upperValue - lowerValue) / 5f
-        val mRange = 0..4
-        mRange.forEach { i ->
-            drawContext.canvas.nativeCanvas.apply {
-                drawText(
-                    round(lowerValue + priceStep * i).toString(),
-                    30f,
-                    size.height - spacing - i * size.height / 5f,
-                    textPaint
-                )
-            }
-        }
+//        val priceStep = (upperValue - lowerValue) / 5f
+//        val mRange = 0..4
+//        mRange.forEach { i ->
+//            drawContext.canvas.nativeCanvas.apply {
+//                drawText(
+//                    round(lowerValue + priceStep * i).toString(),
+//                    30f,
+//                    size.height - spacing - i * size.height / 5f,
+//                    textPaint
+//                )
+//            }
+//        }
 
         val strokePath = Path().apply {
             val height = size.height

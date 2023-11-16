@@ -3,6 +3,7 @@ package com.example.cryptomax.ui.component.coinDetailComponent
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
+import androidx.annotation.RequiresExtension
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
@@ -28,6 +29,7 @@ import java.time.format.DateTimeFormatter
 import kotlin.math.pow
 import kotlin.math.roundToInt
 
+@RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun LineCharts(modifier:Modifier = Modifier){
@@ -61,6 +63,7 @@ fun LineCharts(modifier:Modifier = Modifier){
     }
 }
 
+@RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
 @Composable
 @Preview
 @RequiresApi(Build.VERSION_CODES.O)
