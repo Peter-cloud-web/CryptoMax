@@ -1,10 +1,7 @@
 package com.example.cryptomax.ui.component.coinDetailComponent
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Card
@@ -24,49 +21,11 @@ import com.example.cryptomax.models.coinModel.DataX
 import com.example.cryptomax.ui.theme.cardColor
 
 @Composable
-fun CoinAvailableSupply() {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .padding(start = 5.dp, end = 5.dp, bottom = 5.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = cardColor
-        ),
-    ) {
-
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(15.dp),
-        ) {
-            Text(
-                text = "Available Supply",
-                style = MaterialTheme.typography.titleSmall,
-                color = Color.Black,
-                fontWeight = FontWeight.Bold,
-                fontFamily = FontFamily.Monospace
-            )
-
-//            item?.maxSupply?.let {
-                Text(
-//                    text = ConvertCoins.formatShortValue(it.toDouble()) + " $",
-                    text = "756784387",
-                    style = MaterialTheme.typography.bodySmall,
-                    modifier = Modifier.padding(start = 140.dp),
-                    color = Color.Gray,
-                    fontWeight = FontWeight.Bold,
-                    fontFamily = FontFamily.Monospace
-
-                )
-//            }
-        }
+fun CoinAvailableSupply(item: DataX?) {
+    item?.maxSupply.let {
+        ReusableCustomInfo(
+            label = "Max Supply",
+            value = item?.maxSupply.toString()
+        )
     }
-}
-
-@Preview(showBackground = false)
-@Composable
-fun supply(){
-    CoinAvailableSupply()
 }

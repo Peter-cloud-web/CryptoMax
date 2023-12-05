@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -16,10 +15,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.cryptomax.models.coinListModel.Data
-import com.example.cryptomax.models.coinNews.Article
+import com.example.cryptomax.models.coinListModel.Coin
 import com.example.cryptomax.ui.coins.CoinItem
-import com.example.cryptomax.ui.coins.NewsItem
 import com.example.cryptomax.ui.component.homeScreenComponents.Header
 import com.example.cryptomax.ui.component.homeScreenComponents.ProgressBar
 import com.example.viewModel.CoinViewModel
@@ -37,7 +34,7 @@ fun HomeScreen(navController: NavController, onItemClick: (coinId: String?) -> U
 
             states.success != null -> {
                 CoinList(
-                    coins = states.success.coins,
+                    coins = states.success,
                     navigationRoute = "detailsScreen",
                     onItemClick = { coinId ->
                         if (coinId != null) {
@@ -56,7 +53,7 @@ fun HomeScreen(navController: NavController, onItemClick: (coinId: String?) -> U
 
 @Composable
 fun CoinList(
-    coins: List<Data>,
+    coins: List<Coin>,
     navigationRoute: String?,
     onItemClick: (coinId: String?) -> Unit
 ) {

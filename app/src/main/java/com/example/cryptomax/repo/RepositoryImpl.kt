@@ -7,9 +7,14 @@ import com.example.cryptomax.BuildConfig
 import com.example.cryptomax.common.util.Consts.ASSETS
 import com.example.cryptomax.common.util.Consts.COINCAP_API
 import com.example.cryptomax.common.util.Consts.NEWS_API
+import com.example.cryptomax.dtoModel.CoinDto
+import com.example.cryptomax.dtoModel.CoinResponseDto
+import com.example.cryptomax.dtoModel.mapper.Mappers
+import com.example.cryptomax.dtoModel.mapper.Mappers.toCoin
 import com.example.cryptomax.models.candlesModel.Candle
-import com.example.cryptomax.models.coinModel.Coin
-import com.example.cryptomax.models.coinListModel.CoinResponse
+import com.example.cryptomax.models.coinListModel.Coin
+import com.example.cryptomax.models.coinMarketsModel.CoinMarketsResponse
+import com.example.cryptomax.models.coinModel.DataX
 import com.example.cryptomax.models.coinNews.CoinNewsResponse
 import com.example.cryptomax.resource.Resource
 import io.ktor.client.HttpClient
@@ -20,17 +25,20 @@ import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(private val httpClient:HttpClient):Repository {
     @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
-    override suspend fun getCoinAssets(): Resource<CoinResponse> {
+    override suspend fun getCoinAssets(): Resource<List<Coin>> {
         return try{
             Resource.Loading(null)
-            val response = httpClient.get<CoinResponse>{
+            val response = httpClient.get<CoinResponseDto>{
                 url{
                     protocol = URLProtocol.HTTPS
                     host = COINCAP_API
                     encodedPath = ASSETS
                 }
             }
-            Resource.Success(response)
+            val coins = response.coins.map { coinDto ->
+               coinDto.toCoin(coinDto)
+            }
+            Resource.Success(coins)
 
         }catch (e:Exception){
             Resource.Error(e.localizedMessage?:"An unexpected error occurred")
@@ -44,10 +52,10 @@ class RepositoryImpl @Inject constructor(private val httpClient:HttpClient):Repo
     }
 
     @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
-    override suspend fun getCoinById(id:String):Resource<Coin> {
+    override suspend fun getCoinById(id:String):Resource<DataX> {
         return try {
             Resource.Loading(null)
-            val coin = httpClient.get<Coin> {
+            val coin = httpClient.get<DataX> {
                 url {
                     protocol = URLProtocol.HTTPS
                     host = COINCAP_API
@@ -106,6 +114,28 @@ class RepositoryImpl @Inject constructor(private val httpClient:HttpClient):Repo
             Resource.Error(
                 e.localizedMessage ?: "Network/Server error. Check internet connection"
             )
+        }
+    }
+
+    @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
+    override suspend fun getCoinMarkets(id: String): Resource<CoinMarketsResponse> {
+        return try{
+            Resource.Loading(null)
+            val response = httpClient.get<CoinMarketsResponse>{
+                url{
+                    protocol = URLProtocol.HTTPS
+                    host = COINCAP_API
+                    encodedPath = ASSETS + "/$id" + "/markets"
+                }
+            }
+            Resource.Success(response)
+
+        }catch (e:Exception){
+            Resource.Error(e.localizedMessage?:"An unexpected error occurred")
+        }catch (e:IOException){
+            Resource.Error(e.localizedMessage?:"Network server error")
+        }catch (e: HttpException){
+            Resource.Error(e.localizedMessage?:"Network error")
         }
     }
 }

@@ -23,39 +23,12 @@ import com.example.cryptomax.ui.theme.cardColor
 
 @Composable
 fun CoinMarketCapRow(item: DataX?) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .padding(start = 5.dp, end = 5.dp, bottom = 5.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = cardColor
-        ),
-    ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(15.dp),
-        )  {
-            Text(
-                text = "Market Cap",
-                style = MaterialTheme.typography.titleSmall,
-                color = Color.Black,
-                fontWeight = FontWeight.Bold,
-                fontFamily = FontFamily.Monospace
-            )
-            item?.marketCapUsd?.let {
-                Text(
-                    text = ConvertCoins.formatShortValue(it.toDouble()) + " $",
-                    style = MaterialTheme.typography.titleSmall,
-                    modifier = Modifier.padding(start = 140.dp),
-                    color = Color.Gray,
-                    fontWeight = FontWeight.Bold,
-                    fontFamily = FontFamily.Monospace
-                )
-            }
-        }
 
+    item?.marketCapUsd.let {
+        ReusableCustomInfo(
+            label = "Market Cap",
+            value = item?.marketCapUsd.toString()
+        )
     }
 }
+

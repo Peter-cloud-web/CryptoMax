@@ -25,10 +25,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.example.cryptomax.common.util.Consts.CryptoIconUrl
-import com.example.cryptomax.models.coinListModel.Data
+import com.example.cryptomax.models.coinListModel.Coin
 
 @Composable
-fun CoinItem(coin: Data, navigationRoute: String, onItemClick: (String) -> Unit) {
+fun CoinItem(coin: Coin, navigationRoute: String, onItemClick: (String) -> Unit) {
 
     val navController = rememberNavController()
     Card(
@@ -98,16 +98,16 @@ fun CoinItem(coin: Data, navigationRoute: String, onItemClick: (String) -> Unit)
 
             )
 
-            coin.changePercent24Hr?.let { changePercent24Hr ->
-                val formattedValue = convertDoubleValues(changePercent24Hr)
-                Text(
-                    text = formattedValue + "%",
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = Color.Green,
-                    modifier = Modifier.padding(end = 8.dp),
-                    fontSize = 14.sp,
-                )
-            }
+//            coin.changePercent24Hr?.let { changePercent24Hr ->
+//                val formattedValue = convertDoubleValues(changePercent24Hr)
+//                Text(
+//                    text = formattedValue + "%",
+//                    style = MaterialTheme.typography.bodyLarge,
+//                    color = Color.Green,
+//                    modifier = Modifier.padding(end = 8.dp),
+//                    fontSize = 14.sp,
+//                )
+//            }
             coin.marketCapUsd?.let { marketUsd ->
                 val formattedValue = convertDoubleValues(marketUsd)
                 Text(
@@ -144,7 +144,7 @@ private fun convertDoubleValues(priceUsd: String): String {
     return formattedValue
 }
 
-val sampleCoin = Data(
+val sampleCoin = Coin(
     "0.6210807395039531",
     "https://blockchain.info/",
     "bitcoin",
@@ -152,11 +152,6 @@ val sampleCoin = Data(
     "21000000.0000000000000000",
     "Bitcoin",
     "30217.1651768890862003",
-    "1",
-    "19434312.0000000000000000",
-    "BTC",
-    "3202894877.6105461814426276",
-    "30050.3406268508428545"
 )
 
 //@Preview(showBackground = true)

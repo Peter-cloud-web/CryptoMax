@@ -23,39 +23,10 @@ import com.example.cryptomax.ui.theme.cardColor
 
 @Composable
 fun CoinPriceRow(item: DataX?) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .padding(start = 5.dp, end = 5.dp, bottom = 5.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = cardColor
-        ),
-    ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(15.dp),
-        )  {
-            Text(
-                text = "Current Price",
-                style = MaterialTheme.typography.titleSmall,
-                color = Color.Black,
-                fontWeight = FontWeight.Bold,
-                fontFamily = FontFamily.Monospace
-            )
-            item?.priceUsd?.let {
-                Text(
-                    text = ConvertCoins.formatShortValue(it.toDouble()) + " $",
-                    style = MaterialTheme.typography.titleSmall,
-                    modifier = Modifier.padding(start = 140.dp),
-                    color = Color.Gray,
-                    fontWeight = FontWeight.Bold,
-                    fontFamily = FontFamily.Monospace
-                )
-            }
-        }
+    item?.priceUsd.let {
+        ReusableCustomInfo(
+            label = "Price",
+            value = item?.priceUsd.toString()
+        )
     }
-
 }

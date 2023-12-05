@@ -1,10 +1,10 @@
-package com.example.cryptomax.models.coinListModel
+package com.example.cryptomax.dtoModel
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Data(
+data class CoinDto(
     @SerialName("changePercent24Hr")val changePercent24Hr: String?,
     @SerialName("explorer")val explorer: String?,
     @SerialName("id")val id: String?,

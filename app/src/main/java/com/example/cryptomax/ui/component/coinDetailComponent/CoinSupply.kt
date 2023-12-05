@@ -26,49 +26,10 @@ import com.example.cryptomax.ui.theme.cardColor
 
 @Composable
 fun CoinSupplySection(item: DataX?) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .padding(start = 5.dp, end = 5.dp, bottom = 30.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = cardColor
-        ),
-    ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(15.dp),
-        ) {
-
-            item?.supply?.let {
-                Text(
-                    text = ConvertCoins.formatShortValue(it.toDouble()) + " $",
-                    style = MaterialTheme.typography.titleSmall,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    fontFamily = FontFamily.Monospace
-                )
-            }
-
-            item?.changePercent24Hr?.let {
-                Text(
-                    text = it,
-                    style = MaterialTheme.typography.titleSmall,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier.padding(start = 15.dp),
-                    fontFamily = FontFamily.Monospace
-
-                )
-            }
-
-            Icon(
-                imageVector = Icons.Filled.North,
-                contentDescription = null,
-                tint = Color.Green
-            )
-        }
+    item?.priceUsd.let {
+        ReusableCustomInfo(
+            label = "Supply",
+            value = item?.supply.toString()
+        )
     }
 }
