@@ -124,6 +124,9 @@ dependencies {
     implementation "com.google.accompanist:accompanist-pager:0.32.0"
     implementation "com.google.accompanist:accompanist-pager-indicators:0.32.0"
 
+//    Leak canary
+    implementation "com.squareup.leakcanary:leakcanary-android:2.12"
+
 
 
 }
