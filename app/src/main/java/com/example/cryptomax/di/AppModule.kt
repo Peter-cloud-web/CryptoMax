@@ -3,6 +3,7 @@ package com.example.cryptomax.di
 import android.content.Context
 import coil.ImageLoader
 import com.example.cryptomax.network.CoinCapKtorClient
+import com.example.cryptomax.repo.CoinApi
 import com.example.cryptomax.repo.Repository
 import com.example.cryptomax.repo.RepositoryImpl
 import dagger.Module
@@ -31,7 +32,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideCoinRepository(httpClient: HttpClient):Repository{
-        return RepositoryImpl(httpClient)
+    fun provideCoinRepository(coinApi: CoinApi):Repository{
+        return RepositoryImpl(coinApi)
     }
 }

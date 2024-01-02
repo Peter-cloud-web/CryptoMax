@@ -2,6 +2,7 @@ package com.example.viewModel
 
 import android.net.http.HttpException
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresExtension
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
@@ -12,6 +13,7 @@ import com.example.cryptomax.models.coinListModel.Coin
 import com.example.cryptomax.models.coinModel.DataX
 import com.example.cryptomax.repo.Repository
 import com.example.cryptomax.resource.Resource
+import com.example.viewModel.uistates.CoinDetailsUiState
 import com.example.viewModel.uistates.MarketsUiState
 import com.example.viewModel.uistates.NewsAssetUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -28,7 +30,9 @@ class CoinDetailViewModel @Inject constructor(
     private val stateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    val state = mutableStateOf<DataX?>(null)
+    val state = MutableStateFlow(CoinDetailsUiState())
+    val coinDetails = state.asStateFlow()
+
     val listState = mutableStateOf<List<Data>?>(null)
 
     private val allNews = MutableStateFlow(NewsAssetUiState())
@@ -46,16 +50,20 @@ class CoinDetailViewModel @Inject constructor(
             getCoin(id)
             getCandleData(id)
             getCoinMarkets(id)
+            getCoinNews(id)
         }
     }
 
     @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
     fun getCoin(id: String) {
+        state.value = CoinDetailsUiState(isLoading = true)
         viewModelScope.launch {
             val coin = repository.getCoinById(id)
-            state.value = coin.data
-            getCoinNews(id)
+            Log.d("COINDETAILVIEWMODEL","${coin.data}")
+            Log.d("COINDETAILVIEWMODEL","${id}")
+            state.value = CoinDetailsUiState(success = coin.data)
         }
+        state.value = CoinDetailsUiState(error = "Unexpected error occured")
     }
 
     fun getCandleData(id: String) {

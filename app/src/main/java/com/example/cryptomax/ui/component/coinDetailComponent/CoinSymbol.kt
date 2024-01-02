@@ -20,10 +20,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.cryptomax.common.util.Consts
+import com.example.cryptomax.models.coinModel.Data
 import com.example.cryptomax.models.coinModel.DataX
 
 @Composable
-fun CoinSymbolSection(item: DataX?) {
+fun CoinSymbolSection(item: Data?) {
     Card(
         modifier = Modifier.padding(8.dp)
             .fillMaxWidth()

@@ -17,11 +17,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.cryptomax.common.util.ConvertCoins
+import com.example.cryptomax.models.coinModel.Data
 import com.example.cryptomax.models.coinModel.DataX
 import com.example.cryptomax.ui.theme.cardColor
 
 @Composable
-fun CoinAvailableSupply(item: DataX?) {
+fun CoinAvailableSupply(item: Data?) {
     item?.maxSupply.let {
         ReusableCustomInfo(
             label = "Max Supply",

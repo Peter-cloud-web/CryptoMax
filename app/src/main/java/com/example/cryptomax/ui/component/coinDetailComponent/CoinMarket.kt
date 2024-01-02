@@ -18,11 +18,12 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.cryptomax.common.util.ConvertCoins
+import com.example.cryptomax.models.coinModel.Data
 import com.example.cryptomax.models.coinModel.DataX
 import com.example.cryptomax.ui.theme.cardColor
 
 @Composable
-fun CoinMarketCapRow(item: DataX?) {
+fun CoinMarketCapRow(item: Data?) {
 
     item?.marketCapUsd.let {
         ReusableCustomInfo(

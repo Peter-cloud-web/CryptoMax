@@ -22,10 +22,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.cryptomax.models.coinModel.DataX
 import com.example.cryptomax.common.util.ConvertCoins
+import com.example.cryptomax.models.coinModel.Data
 import com.example.cryptomax.ui.theme.cardColor
 
 @Composable
-fun CoinSupplySection(item: DataX?) {
+fun CoinSupplySection(item: Data?) {
     item?.priceUsd.let {
         ReusableCustomInfo(
             label = "Supply",

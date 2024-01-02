@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Coin(
-    @SerialName("data") val `data`: DataX,
-    @SerialName("timestamp") val timestamp: Long
+data class CoinDetailsResponse(
+    @SerialName("data") val `data`: Data?,
+    @SerialName("timestamp") val timestamp: Long?
 )

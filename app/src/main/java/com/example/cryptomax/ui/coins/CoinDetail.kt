@@ -1,6 +1,7 @@
 package com.example.cryptomax.ui.coins
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresExtension
 import androidx.compose.foundation.layout.Column
@@ -14,6 +15,8 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -36,7 +39,7 @@ import com.example.viewModel.CoinDetailViewModel
 @Composable
 fun CoinDetail() {
     val viewModel: CoinDetailViewModel = hiltViewModel()
-    val item = viewModel.state.value
+    val coinDetailState by viewModel.coinDetails.collectAsState()
 
     Card(
         modifier = Modifier
@@ -53,43 +56,50 @@ fun CoinDetail() {
                 .padding(7.dp),
             horizontalAlignment = Alignment.Start
         ) {
+            coinDetailState.success?.data.let { item ->
 
-            CoinSymbolSection(item)
-            CoinSupplySection(item)
+                Log.d("COINDETAIL", "${item}")
 
-            Text(
-                modifier = Modifier.padding(12.dp),
-                text = "COIN CHART",
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold
-            )
+                CoinSymbolSection(item)
+                CoinSupplySection(item)
 
-            LineCharts()
-            NewsList()
-
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 10.dp, top = 2.dp),
-                horizontalAlignment = Alignment.Start
-            ) {
                 Text(
                     modifier = Modifier.padding(12.dp),
-                    text = "Statistics",
+                    text = "COIN CHART",
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold
                 )
+
+                LineCharts()
+                NewsList()
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 10.dp, top = 2.dp),
+                    horizontalAlignment = Alignment.Start
+                ) {
+                    Text(
+                        modifier = Modifier.padding(12.dp),
+                        text = "Statistics",
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+
+                CoinPriceRow(item)
+                CoinMarketCapRow(item)
+                CoinVolume24hRow(item)
+                CoinAvailableSupply(item)
+                CoinBuySellButtons()
             }
 
-            CoinPriceRow(item)
-            CoinMarketCapRow(item)
-            CoinVolume24hRow(item)
-            CoinAvailableSupply(item)
-            CoinBuySellButtons()
         }
-
     }
+
 }
+
+
 
 
 
