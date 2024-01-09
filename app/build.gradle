@@ -6,9 +6,6 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'kotlinx-serialization'
 }
-def localPropertiesFile = rootProject.file("local.properties")
-def localProperties = new Properties()
-localProperties.load(new FileInputStream(localPropertiesFile))
 
 android {
     namespace 'com.example.cryptomax'
@@ -16,10 +13,6 @@ android {
 
     buildFeatures {
         buildConfig = true
-    }
-
-    defaultConfig {
-        buildConfigField "String", "NEWS_API_KEY", localProperties['news_access_key']
     }
 
     defaultConfig {

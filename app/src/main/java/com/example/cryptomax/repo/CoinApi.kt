@@ -103,7 +103,6 @@ class CoinApi @Inject constructor(private val httpClient: HttpClient) {
                     host = Consts.NEWS_API
                     encodedPath = "/v2/everything"
                     parameters.append("q", query)
-                    parameters.append("apikey", BuildConfig.NEWS_API_KEY)
                 }
             }
             Resource.Success(coinNews)
