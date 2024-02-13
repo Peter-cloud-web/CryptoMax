@@ -59,8 +59,6 @@ class CoinDetailViewModel @Inject constructor(
         state.value = CoinDetailsUiState(isLoading = true)
         viewModelScope.launch {
             val coin = repository.getCoinById(id)
-            Log.d("COINDETAILVIEWMODEL","${coin.data}")
-            Log.d("COINDETAILVIEWMODEL","${id}")
             state.value = CoinDetailsUiState(success = coin.data)
         }
         state.value = CoinDetailsUiState(error = "Unexpected error occured")
