@@ -12,13 +12,13 @@ import com.example.cryptomax.R
 
 
 private val Poppins = FontFamily(
-    Font(R.font.poppins_black),
-    Font(R.font.poppins_blackitallic),
-    Font(R.font.poppins_bold),
-    Font(R.font.poppins_extrabold),
-    Font(R.font.poppins_bolditallic),
-    Font(R.font.poppins_extrabolditallic),
-    Font(R.font.poppins_extralight)
+//    Font(R.font.poppins_black),
+//    Font(R.font.poppins_blackitallic),
+//    Font(R.font.poppins_bold),
+//    Font(R.font.poppins_extrabold),
+//    Font(R.font.poppins_bolditallic),
+//    Font(R.font.poppins_extrabolditallic),
+//    Font(R.font.poppins_extralight)
 )
 
 @Suppress("DEPRECATION")
