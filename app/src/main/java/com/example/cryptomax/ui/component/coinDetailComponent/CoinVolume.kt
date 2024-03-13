@@ -1,8 +1,7 @@
 package com.example.cryptomax.ui.component.coinDetailComponent
 
 import androidx.compose.runtime.Composable
-import com.example.cryptomax.models.coinModel.Data
-import com.example.cryptomax.models.coinModel.DataX
+import com.example.cryptomax.models.coinModels.Data
 
 @Composable
 fun CoinVolume24hRow(item: Data?) {

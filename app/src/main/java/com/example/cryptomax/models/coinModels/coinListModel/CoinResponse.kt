@@ -1,4 +1,4 @@
-package com.example.cryptomax.models.coinListModel
+package com.example.cryptomax.models.coinModels.coinListModel
 
 data class CoinResponse(
     val coins: List<Coin>,

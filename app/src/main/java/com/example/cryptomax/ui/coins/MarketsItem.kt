@@ -16,7 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.cryptomax.models.coinMarketsModel.Data
+import com.example.cryptomax.models.coinModels.coinMarketsModel.Data
 
 @Composable
 fun MarketsItem(data: Data) {

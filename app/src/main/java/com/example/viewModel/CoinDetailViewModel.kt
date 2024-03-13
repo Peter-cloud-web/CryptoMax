@@ -2,15 +2,12 @@ package com.example.viewModel
 
 import android.net.http.HttpException
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresExtension
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cryptomax.models.candlesModel.Data
-import com.example.cryptomax.models.coinListModel.Coin
-import com.example.cryptomax.models.coinModel.DataX
+import com.example.cryptomax.models.coinModels.candlesModel.Data
 import com.example.cryptomax.repo.Repository
 import com.example.cryptomax.resource.Resource
 import com.example.viewModel.uistates.CoinDetailsUiState

@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.cryptomax.models.coinMarketsModel.Data
+import com.example.cryptomax.models.coinModels.coinMarketsModel.Data
 import com.example.cryptomax.ui.coins.MarketsItem
 import com.example.cryptomax.ui.component.homeScreenComponents.ProgressBar
 import com.example.viewModel.CoinDetailViewModel

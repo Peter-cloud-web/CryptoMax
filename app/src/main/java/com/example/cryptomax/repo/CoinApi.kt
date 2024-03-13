@@ -7,15 +7,17 @@ import com.example.cryptomax.BuildConfig
 import com.example.cryptomax.common.util.Consts
 import com.example.cryptomax.dtoModel.CoinResponseDto
 import com.example.cryptomax.dtoModel.mapper.Mappers.toCoin
-import com.example.cryptomax.models.candlesModel.Candle
-import com.example.cryptomax.models.coinListModel.Coin
-import com.example.cryptomax.models.coinMarketsModel.CoinMarketsResponse
-import com.example.cryptomax.models.coinModel.CoinDetailsResponse
-import com.example.cryptomax.models.coinModel.DataX
-import com.example.cryptomax.models.coinNews.CoinNewsResponse
+import com.example.cryptomax.models.coinModels.CoinDetailsResponse
+import com.example.cryptomax.models.coinModels.candlesModel.Candle
+import com.example.cryptomax.models.coinModels.coinListModel.Coin
+import com.example.cryptomax.models.coinModels.coinMarketsModel.CoinMarketsResponse
+import com.example.cryptomax.models.news.coinNews.CoinNewsResponse
+import com.example.cryptomax.models.nfts.NftsResponse
 import com.example.cryptomax.resource.Resource
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
+import io.ktor.client.request.header
+import io.ktor.http.ContentType
 import io.ktor.http.URLProtocol
 import java.io.IOException
 import javax.inject.Inject
@@ -132,6 +134,37 @@ class CoinApi @Inject constructor(private val httpClient: HttpClient) {
             }
             Resource.Success(response)
 
+        } catch (e: Exception) {
+            Resource.Error(e.localizedMessage ?: "An unexpected error occurred")
+        } catch (e: IOException) {
+            Resource.Error(e.localizedMessage ?: "Network server error")
+        } catch (e: HttpException) {
+            Resource.Error(e.localizedMessage ?: "Network error")
+        }
+    }
+
+    @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
+    suspend fun getNFTs(): Resource<NftsResponse> {
+
+        return try {
+            Resource.Loading(null)
+            val response = httpClient.get<NftsResponse> {
+
+                url {
+                    protocol = URLProtocol.HTTPS
+                    host = Consts.NFT_API
+                    encodedPath = Consts.CONTRACT_NFTS
+                    parameters.append("chain", "ethereum")
+                    parameters.append("page_number", "1")
+                    parameters.append("page_size", "50")
+                    parameters.append("include", "metadata")
+                    parameters.append("refresh_metadata", "false")
+
+                    header("Authorization", "a0abfb4b-a1ff-4acb-a268-44c9a7e927f0")
+                    header("Accept", ContentType.Application.Json.toString())
+                }
+            }
+            Resource.Success(response)
         } catch (e: Exception) {
             Resource.Error(e.localizedMessage ?: "An unexpected error occurred")
         } catch (e: IOException) {

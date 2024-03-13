@@ -2,12 +2,12 @@ package com.example.cryptomax.repo
 
 import android.os.Build
 import androidx.annotation.RequiresExtension
-import com.example.cryptomax.models.candlesModel.Candle
-import com.example.cryptomax.models.coinListModel.Coin
-import com.example.cryptomax.models.coinMarketsModel.CoinMarketsResponse
-import com.example.cryptomax.models.coinModel.CoinDetailsResponse
-import com.example.cryptomax.models.coinModel.DataX
-import com.example.cryptomax.models.coinNews.CoinNewsResponse
+import com.example.cryptomax.models.coinModels.candlesModel.Candle
+import com.example.cryptomax.models.coinModels.coinListModel.Coin
+import com.example.cryptomax.models.coinModels.coinMarketsModel.CoinMarketsResponse
+import com.example.cryptomax.models.coinModels.CoinDetailsResponse
+import com.example.cryptomax.models.news.coinNews.CoinNewsResponse
+import com.example.cryptomax.models.nfts.NftsResponse
 import com.example.cryptomax.resource.Resource
 import javax.inject.Inject
 
@@ -34,6 +34,11 @@ class RepositoryImpl @Inject constructor(private val coinApi: CoinApi):Repositor
     @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
     override suspend fun getCoinMarkets(id: String): Resource<CoinMarketsResponse> {
         return coinApi.getCoinMarkets(id)
+    }
+
+    @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
+    override suspend fun getNFTs(): Resource<NftsResponse> {
+       return coinApi.getNFTs()
     }
 
 }

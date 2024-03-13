@@ -1,6 +1,5 @@
 package com.example.cryptomax.ui.component.coinDetailComponent
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,8 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.cryptomax.common.util.Consts
-import com.example.cryptomax.models.coinModel.Data
-import com.example.cryptomax.models.coinModel.DataX
+import com.example.cryptomax.models.coinModels.Data
 
 @Composable
 fun CoinSymbolSection(item: Data?) {

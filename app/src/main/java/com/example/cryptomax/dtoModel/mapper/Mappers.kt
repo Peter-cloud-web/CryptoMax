@@ -1,7 +1,7 @@
 package com.example.cryptomax.dtoModel.mapper
 
 import com.example.cryptomax.dtoModel.CoinDto
-import com.example.cryptomax.models.coinListModel.Coin
+import com.example.cryptomax.models.coinModels.coinListModel.Coin
 
 
 object Mappers {

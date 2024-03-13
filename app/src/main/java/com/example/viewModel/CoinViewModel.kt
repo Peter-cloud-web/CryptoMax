@@ -8,6 +8,7 @@ import coil.network.HttpException
 import com.example.cryptomax.repo.Repository
 import com.example.cryptomax.resource.Resource
 import com.example.viewModel.uistates.CoinAssetsUiStates
+import com.example.viewModel.uistates.NFTsUiStates
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,7 +23,6 @@ class CoinViewModel @Inject constructor(private val repository: Repository,priva
     val allAssets = _allCoins.asStateFlow()
 
     init {
-
         getCoins()
     }
     fun getCoins(){
@@ -32,7 +32,7 @@ class CoinViewModel @Inject constructor(private val repository: Repository,priva
                 val data = repository.getCoinAssets()
                 _allCoins.value = when(data){
                     is Resource.Success -> CoinAssetsUiStates(success = data.data)
-                    is Resource.Error -> data.message?.let { CoinAssetsUiStates(error = it) }!!
+                    is Resource.Error -> data.message?.let { message -> CoinAssetsUiStates(error = message) }!!
                     is Resource.Loading -> CoinAssetsUiStates(isLoading = true)
 
                 }

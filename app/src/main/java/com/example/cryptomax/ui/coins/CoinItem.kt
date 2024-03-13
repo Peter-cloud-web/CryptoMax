@@ -20,12 +20,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.example.cryptomax.common.util.Consts.CryptoIconUrl
-import com.example.cryptomax.models.coinListModel.Coin
+import com.example.cryptomax.models.coinModels.coinListModel.Coin
 
 @Composable
 fun CoinItem(coin: Coin, navigationRoute: String, onItemClick: (String) -> Unit) {
@@ -68,6 +69,18 @@ fun CoinItem(coin: Coin, navigationRoute: String, onItemClick: (String) -> Unit)
                 )
             }
 
+            coin.symbol?.let { symbol ->
+
+                Text(
+                    text = symbol,
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    fontSize = 14.sp,
+                    modifier = Modifier.padding(horizontal = 20.dp)
+                )
+            }
+
             coin.priceUsd?.let { priceUsd ->
                 val formattedValue = convertDoubleValues(priceUsd)
                 Text(
@@ -75,7 +88,7 @@ fun CoinItem(coin: Coin, navigationRoute: String, onItemClick: (String) -> Unit)
                     style = MaterialTheme.typography.titleSmall,
                     color = MaterialTheme.colorScheme.onSurface,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(start = 200.dp),
+                    modifier = Modifier.padding(start = 100.dp),
                     fontSize = 14.sp,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
@@ -97,17 +110,6 @@ fun CoinItem(coin: Coin, navigationRoute: String, onItemClick: (String) -> Unit)
                 tint = Color.Green
 
             )
-
-//            coin.changePercent24Hr?.let { changePercent24Hr ->
-//                val formattedValue = convertDoubleValues(changePercent24Hr)
-//                Text(
-//                    text = formattedValue + "%",
-//                    style = MaterialTheme.typography.bodyLarge,
-//                    color = Color.Green,
-//                    modifier = Modifier.padding(end = 8.dp),
-//                    fontSize = 14.sp,
-//                )
-//            }
             coin.marketCapUsd?.let { marketUsd ->
                 val formattedValue = convertDoubleValues(marketUsd)
                 Text(
@@ -117,18 +119,6 @@ fun CoinItem(coin: Coin, navigationRoute: String, onItemClick: (String) -> Unit)
                     color = Color.Green,
                     modifier = Modifier.padding(end = 8.dp),
                     fontSize = 14.sp,
-                )
-            }
-
-            coin.symbol?.let { symbol ->
-
-                Text(
-                    text = symbol,
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    fontSize = 14.sp,
-                    modifier = Modifier.padding(horizontal = 25.dp)
                 )
             }
 
@@ -143,19 +133,3 @@ private fun convertDoubleValues(priceUsd: String): String {
     val formattedValue = doubleValue?.let { String.format("%.2f", it) } ?: stringValue
     return formattedValue
 }
-
-val sampleCoin = Coin(
-    "0.6210807395039531",
-    "https://blockchain.info/",
-    "bitcoin",
-    "587249815803.1976906115246936",
-    "21000000.0000000000000000",
-    "Bitcoin",
-    "30217.1651768890862003",
-)
-
-//@Preview(showBackground = true)
-//@Composable
-//fun CoinItemPreview() {
-//    CoinItem(coin = sampleCoin,"")
-//}

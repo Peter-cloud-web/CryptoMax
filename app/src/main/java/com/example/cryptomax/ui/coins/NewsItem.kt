@@ -30,7 +30,7 @@ import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
 import com.example.cryptomax.R
-import com.example.cryptomax.models.coinNews.Article
+import com.example.cryptomax.models.news.coinNews.Article
 import com.example.cryptomax.ui.theme.cardColor
 
 
@@ -86,8 +86,3 @@ fun NewsItem(newsArticle: Article) {
     }
 }
 
-//@Preview(showBackground = false)
-//@Composable
-//fun NewsItemPreview(){
-//    NewsItem()
-//}

@@ -1,4 +1,4 @@
-package com.example.cryptomax.models.coinMarketsModel
+package com.example.cryptomax.models.coinModels.coinMarketsModel
 
 import kotlinx.serialization.Serializable
 
