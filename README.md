@@ -1,4 +1,6 @@
-# CRYPTOMAX APP [WORK IN PROGRESS]
+# CRYPTOMAX APP 
+<img src= "https://github.com/Peter-cloud-web/CryptoMax/assets/57822783/6ce98a19-6b05-407e-88cb-b3d5f40090fa" width = "250px">
+
 Android application utilizing the Kotlin programming language. This application seamlessly integrates with the renowned  [COINCAP_API](https://docs.coincap.io/) , which allows users to explore and discover a
 wide range of cryptocurrency exchanges including an extensive listing with current market prices.
 
@@ -8,7 +10,7 @@ wide range of cryptocurrency exchanges including an extensive listing with curre
     - [Table Of Content](#table-of-content)
     - [Architecture](#architecture)
     - [Tech Stack](#tech-stack)
-        - [Libraries](#libraries)
+    - [Libraries](#libraries)
     - [Screenshots](#screenshots)
 
 
