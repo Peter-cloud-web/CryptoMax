@@ -22,9 +22,14 @@ The app is built on MVVM architecture
 
 __UI__
 
-- [Hilt](https://dagger.dev/hilt/) - Dependency Injection framework
+- [Jetpack Compose](https://developer.android.com/jetpack/compose) - User Interface development and management
 - [Coil](https://coil-kt.github.io/coil/) - Load images from network source.
 - [Jetpack Navigation](https://developer.android.com/guide/navigation) - Navigations from one fragment to another.
+
+__Dependency management__
+  - [Hilt](https://dagger.dev/hilt/) - Dependency Injection framework
+  - [Gradle Version Catalog](https://dagger.dev/hilt/) - Add and maintain dependencies and plugins in a scalable way.
+
 
 __Data__
 
